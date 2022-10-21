@@ -1,1 +1,1 @@
-from pychunk import *
+from .pychunk import chunk

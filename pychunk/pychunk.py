@@ -9,7 +9,6 @@ def chunk_by_num_items(l, num_items: int) -> Iterable:
     # 0-2, 2-4, 4-5
     start: int = 0
     while start < len(l):
-        print (l[start : start + num_items])
         yield l[start : start + num_items]
         start += num_items
 
@@ -31,13 +30,7 @@ def chunk(l, num_chunks: Optional[int] = None, num_items: Optional[int] = None) 
         if num_chunks == 0 or num_chunks == 1:
             yield l
             return
-        # [1, 2, 3, 4, 5] num_chunks 2 => 5/2 = 2
-        # [1, 2] [3, 4], [5, 6]
         num_items: int = int(math.ceil(len(l) / num_chunks))
-        # start = 0
-        # for chunk in range(chunks):
-        #     yield l[start:  start + num_chunks]
-        #     start += num_chunks
         yield from chunk_by_num_items(l, num_items)
     else:
         raise ValueError("No operations performed")
