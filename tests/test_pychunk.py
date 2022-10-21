@@ -21,5 +21,4 @@ data = [
 @pytest.mark.parametrize("l, params, expected", data)
 def test_chunk_with_different_params(l, params, expected):
     output = list(chunk(l=l, **params))
-    print(output)
     assert output == expected
