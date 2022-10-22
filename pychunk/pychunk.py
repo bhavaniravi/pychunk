@@ -23,14 +23,9 @@ def chunk(l, num_chunks: Optional[int] = None, num_items: Optional[int] = None) 
     if num_items is None and num_chunks is None:
         raise ValueError("Either num_items or num_chunks must be specified.")
 
-    if num_items is not None:
-        yield from chunk_by_num_items(l, num_items)
-
-    elif num_chunks is not None:
-        if num_chunks == 0 or num_chunks == 1:
+    if num_items is None:
+        if num_chunks in [0, 1]:
             yield l
             return
         num_items: int = int(math.ceil(len(l) / num_chunks))
-        yield from chunk_by_num_items(l, num_items)
-    else:
-        raise ValueError("No operations performed")
+    yield from chunk_by_num_items(l, num_items)
